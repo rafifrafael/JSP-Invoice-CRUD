@@ -1,0 +1,69 @@
+package com.info;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Edit
+ */
+public class EditFood extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+   
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int uid = Integer.parseInt(request.getParameter ("id"));
+		String uname = request.getParameter ("uname");
+		float ucost = Float.parseFloat(request.getParameter ("cost"));
+		
+		try {
+			
+			Connection con = DBConn.initializeDatabase();
+			PreparedStatement st = con.prepareStatement("update food set name=?, cost=? where id=?");
+			
+			st.setString(1, uname);
+			st.setFloat(2, ucost);
+			st.setInt(3, uid);
+			
+			
+			st.executeUpdate () ;
+			
+			st.close();
+			con.close();
+			// Get a writer pointer
+			// to display the successful result
+			PrintWriter out = response.getWriter();
+			out.println ("<html><body><b>Successfully Updated"	+ "</b></body></html>") ;
+			response.sendRedirect("http://localhost:8080/Assignment2/admin.jsp");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static Data getRecordById(int id){  
+	    Data d=null;  
+	    try{  
+	    	Connection con = DBConn.initializeDatabase(); 
+	        PreparedStatement ps=con.prepareStatement("select * from food where id=?");  
+	        ps.setInt(1,id);  
+	        ResultSet rs=ps.executeQuery();  
+	        while(rs.next()){  
+	            d=new Data();  
+	            d.setId(rs.getInt("id"));
+	            d.setName(rs.getString("name"));
+	            d.setCost(rs.getFloat("cost"));
+	        }  
+	    }catch(Exception e){System.out.println(e);}  
+	    	return d;  
+	} 
+
+}
