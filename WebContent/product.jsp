@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>   
-
-<%@page import="com.info.EditUser, com.info.Data"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@page import="com.info.EditUser, com.info.Data"%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -15,7 +14,6 @@
 	  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
 	  rel="stylesheet"
 	/>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -24,17 +22,16 @@
   </head>
   <body>
   
-  	   <%
-				//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
-				String uid = (String)session.getAttribute("username");
-      			String type = (String)session.getAttribute("type");
-				if (session.getAttribute("type").equals("admin")|| uid == null)
-				{
-					%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
-					 	<jsp:forward page="logout.jsp"/>
-					<%	
-				}
-		%> 
+  	<%
+		String uid = (String)session.getAttribute("username");
+      	String type = (String)session.getAttribute("type");
+		if (uid == null || session.getAttribute("type").equals("user"))
+		{
+			%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
+				<jsp:forward page="logout.jsp"/>
+			<%	
+		}
+	%>
   
   <h1>Company Name</h1>
     
@@ -46,35 +43,21 @@
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarNav">
 	      <ul class="navbar-nav">
-	       
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="user.jsp">Home</a>
+	          <a class="nav-link" aria-current="page" href="admin.jsp">Home</a>
 	        </li>
-	        
 	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" href="#">About Us</a>
+	          <a class="nav-link active" aria-current="page" href="product.jsp">Products</a>
 	        </li>
-	        
-	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" href="#">Contact</a>
-	        </li>
-	        
-	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" href="#">Detail</a>
-	        </li>
-	        
-	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" href="#">Service</a>
-	        </li>
-	        
 	      </ul>
-	    </div>	    
-	     <!-- Right elements -->
-	     
+	    </div>
 	    
+	    <!-- Right elements -->
     <div class="d-flex align-items-center">
-   
-		<!-- WE HAVE GIVEN LOGOUT.JSP FILE INORDER TO LOGOUT THE SESSION -->
+		
+      	<%	
+			out.println(" Welcome! " +uid);
+		%>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -82,42 +65,29 @@
 				</li>
 			</ul>
 		</div>
-		
+
+ 
     </div>
     <!-- Right elements -->
 	  </div>
 	</nav>
-	<br>
-	
-
-	<%  
-		String id=(String)session.getAttribute("id");  
-		Data d=EditUser.getRecordById(Integer.parseInt(id)); 
-	%>
-			
-	<%	
-		out.println(" Welcome! " +uid);
-	%>
-		
-	<div align="center">
-	
-	<table class="table w-25" border=0 align="center">
-	
-		<tr>
-			<td><a href="electronic.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Electronic Product</a></td>
-			<td><a href="food.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Food Product</a></td>
-		</tr>
-		
-		<tr>
-			<td><a href="form.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Education Product</a></td>
-			<td><a href="record.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Medical Product</a></td>			
-		</tr>
-	
-	</table>
-	</div>
+	<br><br><br>
+     
+    <div class="container">
+    	<caption><h2 align=center>List of Products</h2></caption>
+         <table class="table table-striped w-25" align="center">            
+            <tr>
+            	<th>Name</th>
+            	<th>View</th>
+            </tr>
+            <tr>
+                <td>Food</td>
+                <td><a href="foodlist.jsp" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View</a>
+            </tr>
+        </table>
+    </div>
     
-    
-    <footer class="bg-light text-center text-lg-start fixed-bottom">
+<footer class="bg-light text-center text-lg-start fixed-bottom">
 	  <!-- Grid container -->
 	  <div class="container p-4">
 	    <!--Grid row-->
@@ -136,7 +106,7 @@
 	      <!--Grid column-->
 	      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 	        <p>
-	          <a href='http://www.facebook.com/' style="text-decoration:none;"><i class="fa-brands fa-facebook-f"></i> Facebook</a> <br>
+	          <a href='http://www.facebook.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-facebook-f"></i> Facebook</a> <br>
 	          <a href='http://www.twitter.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-twitter"></i> Twitter</a> <br>
 	          <a href='http://www.instagram.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-instagram"></i> Instagram</a> <br>
 	          
@@ -155,5 +125,6 @@
 	  </div>
 	  <!-- Copyright -->
 	</footer>
-  </body>
+
+</body>
 </html>

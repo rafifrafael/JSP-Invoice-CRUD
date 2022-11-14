@@ -20,8 +20,8 @@ public class EditFood extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int uid = Integer.parseInt(request.getParameter ("id"));
-		String uname = request.getParameter ("uname");
-		float ucost = Float.parseFloat(request.getParameter ("cost"));
+		String uname = request.getParameter ("name");
+		String ucost = request.getParameter ("cost");
 		
 		try {
 			
@@ -29,7 +29,7 @@ public class EditFood extends HttpServlet {
 			PreparedStatement st = con.prepareStatement("update food set name=?, cost=? where id=?");
 			
 			st.setString(1, uname);
-			st.setFloat(2, ucost);
+			st.setString(2, ucost);
 			st.setInt(3, uid);
 			
 			
@@ -41,7 +41,7 @@ public class EditFood extends HttpServlet {
 			// to display the successful result
 			PrintWriter out = response.getWriter();
 			out.println ("<html><body><b>Successfully Updated"	+ "</b></body></html>") ;
-			response.sendRedirect("http://localhost:8080/Assignment2/admin.jsp");
+			response.sendRedirect("http://localhost:8080/Assignment3/foodlist.jsp");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class EditFood extends HttpServlet {
 	            d=new Data();  
 	            d.setId(rs.getInt("id"));
 	            d.setName(rs.getString("name"));
-	            d.setCost(rs.getFloat("cost"));
+	            d.setCost(rs.getString("cost"));
 	        }  
 	    }catch(Exception e){System.out.println(e);}  
 	    	return d;  

@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>   
-
-<%@page import="com.info.EditUser, com.info.Data"%>
+<%@page import="com.info.EditUser, com.info.EditFood,com.info.Data"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,19 +18,19 @@
   	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body> 
   
-  	   <%
-				//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
-				String uid = (String)session.getAttribute("username");
-      			String type = (String)session.getAttribute("type");
-				if (session.getAttribute("type").equals("admin")|| uid == null)
-				{
-					%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
-					 	<jsp:forward page="logout.jsp"/>
-					<%	
-				}
-		%> 
+   	<%
+		String uid = (String)session.getAttribute("username");
+      	String type = (String)session.getAttribute("type");
+		if (uid == null || session.getAttribute("type").equals("user"))
+		{
+			%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
+				<jsp:forward page="logout.jsp"/>
+			<%	
+		}
+	%>
+  
   
   <h1>Company Name</h1>
     
@@ -46,35 +42,21 @@
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarNav">
 	      <ul class="navbar-nav">
-	       
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="user.jsp">Home</a>
+	          <a class="nav-link active" aria-current="page" href="admin.jsp">Home</a>
 	        </li>
-	        
 	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" href="#">About Us</a>
+	          <a class="nav-link active" aria-current="page" href="product.jsp">Products</a>
 	        </li>
-	        
-	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" href="#">Contact</a>
-	        </li>
-	        
-	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" href="#">Detail</a>
-	        </li>
-	        
-	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" href="#">Service</a>
-	        </li>
-	        
 	      </ul>
-	    </div>	    
-	     <!-- Right elements -->
-	     
+	    </div>
 	    
+	    <!-- Right elements -->
     <div class="d-flex align-items-center">
-   
-		<!-- WE HAVE GIVEN LOGOUT.JSP FILE INORDER TO LOGOUT THE SESSION -->
+		
+      	<%	
+			out.println(" Welcome! " +uid);
+		%>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -82,41 +64,48 @@
 				</li>
 			</ul>
 		</div>
-		
+
+ 
     </div>
     <!-- Right elements -->
 	  </div>
 	</nav>
-	<br>
+	<br><br><br>
 	
-
 	<%  
-		String id=(String)session.getAttribute("id");  
-		Data d=EditUser.getRecordById(Integer.parseInt(id)); 
+		String id=request.getParameter("id");
+		Data d=EditFood.getRecordById(Integer.parseInt(id));  
 	%>
-			
-	<%	
-		out.println(" Welcome! " +uid);
-	%>
+	
+	<h2 align="center">Status Data</h2>
+		<div class="container">
 		
-	<div align="center">
-	
-	<table class="table w-25" border=0 align="center">
-	
-		<tr>
-			<td><a href="electronic.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Electronic Product</a></td>
-			<td><a href="food.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Food Product</a></td>
-		</tr>
+			<input type=hidden name="id" value="<%=d.getId() %>">
 		
-		<tr>
-			<td><a href="form.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Education Product</a></td>
-			<td><a href="record.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Medical Product</a></td>			
-		</tr>
-	
-	</table>
-	</div>
-    
-    
+		<center><img src="getimage.jsp?id=<%=d.getId() %>" width="100px"></center>
+		
+		<table class="table table-striped w-25" align="center">
+            <tr>
+                <td>ID</td>
+                <td>: <%=d.getId() %></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>: <%=d.getName() %></td>
+            </tr>
+            <tr>
+                <td>Cost</td>
+                <td>: <%=d.getCost() %></td>
+            </tr>
+            <tr>
+            	<td><a class="btn btn-primary" role="button" href="editformfood.jsp?id=<%=d.getId() %>">Edit</a> |
+				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete_<%=d.getId()%>">Delete</button></td>
+				<td></td>
+            </tr>      
+        </table>
+        </div>
+
+        
     <footer class="bg-light text-center text-lg-start fixed-bottom">
 	  <!-- Grid container -->
 	  <div class="container p-4">
@@ -136,7 +125,7 @@
 	      <!--Grid column-->
 	      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 	        <p>
-	          <a href='http://www.facebook.com/' style="text-decoration:none;"><i class="fa-brands fa-facebook-f"></i> Facebook</a> <br>
+	          <a href='http://www.facebook.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-facebook-f"></i> Facebook</a> <br>
 	          <a href='http://www.twitter.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-twitter"></i> Twitter</a> <br>
 	          <a href='http://www.instagram.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-instagram"></i> Instagram</a> <br>
 	          
@@ -155,5 +144,6 @@
 	  </div>
 	  <!-- Copyright -->
 	</footer>
-  </body>
+
+</body>
 </html>

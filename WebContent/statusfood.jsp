@@ -93,7 +93,7 @@
 		
 			<input type=hidden name="id" value="<%=d.getId() %>">
 		
-		<center><img src="getimageuser.jsp?id=<%=d.getId() %>" width="100px"></center>
+		<center><img src="getimage.jsp?id=<%=d.getId() %>" width="100px"></center>
 		
 		<table class="table table-striped w-50" align="center">
             <tr>
@@ -122,7 +122,7 @@
 	        <p>
 	          <i class="fa-solid fa-envelope"></i> rafifmurtadho@gmail.com <br>
 	          <i class="fa-solid fa-phone"></i> 08888 <br>
-	          <i class="fa-solid fa-location-dot"></i> Mondstad
+	          <i class="fa-solid fa-location-dot"></i> Mondstadt
 	        </p>
 	      </div>
 	      <!--Grid column-->
@@ -131,9 +131,9 @@
 	      <!--Grid column-->
 	      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 	        <p>
-	          <a href='http://www.facebook.com/' target='_blank'><i class="fa-brands fa-facebook-f"></i> Facebook</a> <br>
-	          <a href='http://www.twitter.com/' target='_blank'><i class="fa-brands fa-twitter"></i> Twitter</a> <br>
-	          <a href='http://www.instagram.com/' target='_blank'><i class="fa-brands fa-instagram"></i> Instagram</a> <br>
+	          <a href='http://www.facebook.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-facebook-f"></i> Facebook</a> <br>
+	          <a href='http://www.twitter.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-twitter"></i> Twitter</a> <br>
+	          <a href='http://www.instagram.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-instagram"></i> Instagram</a> <br>
 	          
 	        </p>
 	      </div>

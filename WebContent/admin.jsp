@@ -33,7 +33,7 @@
 		}
 	%>
   
-  <h1>HEADER</h1>
+  <h1>Company Name</h1>
     
     <nav class="navbar navbar-expand-lg bg-light">
 	  <div class="container-fluid">
@@ -46,17 +46,14 @@
 	        <li class="nav-item">
 	          <a class="nav-link active" aria-current="page" href="admin.jsp">Home</a>
 	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" aria-current="page" href="product.jsp">Products</a>
+	        </li>
 	      </ul>
 	    </div>
 	    
 	    <!-- Right elements -->
     <div class="d-flex align-items-center">
-        <%  
-			String id=(String)session.getAttribute("id");  
-			Data d=EditUser.getRecordById(Integer.parseInt(id)); 
-		%>
-	
-    	<img src="getimageuser.jsp?id=<%=d.getId() %>" width="50px">
 		
       	<%	
 			out.println(" Welcome! " +uid);
@@ -131,9 +128,39 @@
         </table>
     </div>
     
-    <footer class="fixed-bottom bg-light text-center text-lg-start">
+<footer class="bg-light text-center text-lg-start fixed-bottom">
+	  <!-- Grid container -->
+	  <div class="container p-4">
+	    <!--Grid row-->
+	    <div class="row">
+	      <!--Grid column-->
+	      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">	
+	        <p>
+	          <i class="fa-solid fa-envelope"></i> rafifmurtadho@gmail.com <br>
+	          <i class="fa-solid fa-phone"></i> 08888 <br>
+	          <i class="fa-solid fa-location-dot"></i> Mondstadt
+	        </p>
+	      </div>
+	      <!--Grid column-->
+		 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+		 </div>
+	      <!--Grid column-->
+	      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+	        <p>
+	          <a href='http://www.facebook.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-facebook-f"></i> Facebook</a> <br>
+	          <a href='http://www.twitter.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-twitter"></i> Twitter</a> <br>
+	          <a href='http://www.instagram.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-instagram"></i> Instagram</a> <br>
+	          
+	        </p>
+	      </div>
+	      <!--Grid column-->
+	    </div>
+	    <!--Grid row-->
+	  </div>
+	  <!-- Grid container -->
+	
 	  <!-- Copyright -->
-	  <div class="text-center p-3">
+	  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
 	    © 2022 Copyright:
 	    Rafif Murtadho
 	  </div>

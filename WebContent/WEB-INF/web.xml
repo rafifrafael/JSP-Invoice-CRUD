@@ -37,7 +37,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>EditFood</servlet-name>
-    <url-pattern>/EditFood</url-pattern>
+    <url-pattern>/editfood</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -48,5 +48,15 @@
   <servlet-mapping>
     <servlet-name>InvoiceFood</servlet-name>
     <url-pattern>/invoicefood</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeImg</display-name>
+    <servlet-name>ChangeImg</servlet-name>
+    <servlet-class>com.info.ChangeImg</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeImg</servlet-name>
+    <url-pattern>/changeimg</url-pattern>
   </servlet-mapping>
 </web-app>

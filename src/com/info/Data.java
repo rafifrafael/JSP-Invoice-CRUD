@@ -4,20 +4,13 @@ public class Data {
 	
 	private int id, idU;
 	private String username, password, firstname, lastname, email, address, phone, type;
-	private String name;
-	private float cost;
+	private String name, cost;
 	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public float getCost() {
-		return cost;
-	}
-	public void setCost(float cost) {
-		this.cost = cost;
 	}
 	public int getId() {
 		return id;
@@ -79,5 +72,10 @@ public class Data {
 	public void setType(String type) {
 		this.type = type;
 	}
-
+	public String getCost() {
+		return cost;
+	}
+	public void setCost(String cost) {
+		this.cost = cost;
+	}
 }

@@ -121,7 +121,7 @@
 
     	
     	<sql:query var="listUsers" dataSource="${myDS}">
-       		SELECT * FROM food where id in (<% 
+       		SELECT * FROM <%= request.getParameter("typep")%> WHERE id IN (<% 
 									    		String checkedFood[] = request.getParameterValues("checkedfood");
    												String a = "";
 										    	for(String f: checkedFood) {
@@ -174,8 +174,7 @@
             <p>Thank you for your purchase</p>
           </div>
           <div class="col-xl-2">
-            <button type="button" class="btn btn-primary text-capitalize"
-              style="background-color:#60bdf3 ;">Pay Now</button>
+            <a class="btn btn-danger" onClick="window.print()"><i class="fa-solid fa-file-pdf"></i> Save to PDF</a>
           </div>
         </div>
 
@@ -196,7 +195,7 @@
 	        <p>
 	          <i class="fa-solid fa-envelope"></i> rafifmurtadho@gmail.com <br>
 	          <i class="fa-solid fa-phone"></i> 08888 <br>
-	          <i class="fa-solid fa-location-dot"></i> Mondstad
+	          <i class="fa-solid fa-location-dot"></i> Mondstadt
 	        </p>
 	      </div>
 	      <!--Grid column-->
@@ -205,9 +204,9 @@
 	      <!--Grid column-->
 	      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 	        <p>
-	          <a href='http://www.facebook.com/' target='_blank'><i class="fa-brands fa-facebook-f"></i> Facebook</a> <br>
-	          <a href='http://www.twitter.com/' target='_blank'><i class="fa-brands fa-twitter"></i> Twitter</a> <br>
-	          <a href='http://www.instagram.com/' target='_blank'><i class="fa-brands fa-instagram"></i> Instagram</a> <br>
+	          <a href='http://www.facebook.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-facebook-f"></i> Facebook</a> <br>
+	          <a href='http://www.twitter.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-twitter"></i> Twitter</a> <br>
+	          <a href='http://www.instagram.com/' target='_blank' style="text-decoration:none;"><i class="fa-brands fa-instagram"></i> Instagram</a> <br>
 	          
 	        </p>
 	      </div>
