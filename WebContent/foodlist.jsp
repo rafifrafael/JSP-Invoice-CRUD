@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-<%@page import="com.info.EditUser, com.info.EditFood, com.info.Data"%>  
+<%@page import="com.info.EditUser,com.info.EditProduct, com.info.Data"%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -101,12 +101,12 @@
                     <td><c:out value="${user.name}" /></td>
                     <td>
 	
-    					<img src="getimage.jsp?id=${user.id}" width="50px">
+    					<img src="getimage.jsp?id=${user.id}&product=${user.product}" width="50px">
                     
                     </td>
                     <td><c:out value="${user.cost}" /></td>
-                    <td><a href="statusfoodadm.jsp?id=${user.id}" class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td><a href="editformfood.jsp?id=${user.id}" class="btn btn-success"><i class="fa-solid fa-pencil"></i></a> |
+                    <td><a href="statusproductadm.jsp?id=${user.id}&product=${user.product}" class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td><a href="editformproduct.jsp?id=${user.id}&product=${user.product}" class="btn btn-success"><i class="fa-solid fa-pencil"></i></a> |
 						<a href="#delete_${user.id}" class="btn btn-danger" data-bs-toggle="modal"><i class="fa-solid fa-trash"></i></a>
 					</td>
                 </tr>
@@ -119,10 +119,11 @@
 				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				      </div>
 				      <div class="modal-body">
-				        <form action="./deleteuser" method="post">
+				        <form action="./delete" method="post">
 							<input type=text name="id" value="${user.id}" hidden>
+							<input type=text name="product" value="food" hidden>
 							<p>are you sure want to delete this record?</p>
-							<p>record username : <b>${user.username}</b></p>
+							<p>record name : <b>${user.name}</b></p>
 						
 				      </div>
 				      <div class="modal-footer">

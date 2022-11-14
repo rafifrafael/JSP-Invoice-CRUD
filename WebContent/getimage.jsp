@@ -12,7 +12,7 @@
 	String product = request.getParameter("product");
     try {
     	Connection con = DBConn.initializeDatabase();
-        PreparedStatement ps = con.prepareStatement("select * from food where id=?");
+        PreparedStatement ps = con.prepareStatement("select * from "+ product +" where id=?");
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {

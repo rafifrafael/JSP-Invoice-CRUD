@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>   
 
-<%@page import="com.info.EditUser, com.info.EditFood, com.info.Data"%>
+<%@page import="com.info.EditUser,com.info.EditProduct, com.info.Data"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -123,19 +123,19 @@
             <c:forEach var="user" items="${listUsers.rows}">
                 <tr>
                     <td><c:out value="${user.id}" /></td>
-                    <td><a href="statusfood.jsp?id=${user.id}"><c:out value="${user.name}" /></a></td>
+                    <td><a href="statusproduct.jsp?id=${user.id}&product=${user.product}"><c:out value="${user.name}" /></a></td>
                     <td>
 	
-    					<img src="getimage.jsp?id=${user.id}" width="50px">
+    					<img src="getimage.jsp?id=${user.id}&product=${user.product}" width="50px">
                     
                     </td>
                     <td><input type="checkbox" name="checkedfood" value="${user.id}" /></td>
+                    <td><input type=text name=product value="${user.product}" hidden></td>
                 </tr>
             </c:forEach>
         </table>
         
-		<input type=text name=date value="<%= (new java.util.Date()).toLocaleString()%>" hidden>
-		<input type=text name=typep value="food" hidden>
+		<input type=text name=date value="<%= (new java.util.Date()).toLocaleString()%>" hidden>		
 		
 		<center><input type="submit" class="btn btn-primary" value="Submit"></center>
         

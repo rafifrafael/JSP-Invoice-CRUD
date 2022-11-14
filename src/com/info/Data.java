@@ -4,7 +4,7 @@ public class Data {
 	
 	private int id, idU;
 	private String username, password, firstname, lastname, email, address, phone, type;
-	private String name, cost;
+	private String name, cost, product;
 	
 	public String getName() {
 		return name;
@@ -77,5 +77,11 @@ public class Data {
 	}
 	public void setCost(String cost) {
 		this.cost = cost;
+	}
+	public String getProduct() {
+		return product;
+	}
+	public void setProduct(String product) {
+		this.product = product;
 	}
 }

@@ -31,13 +31,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>EditFood</display-name>
-    <servlet-name>EditFood</servlet-name>
-    <servlet-class>com.info.EditFood</servlet-class>
+    <display-name>EditProduct</display-name>
+    <servlet-name>EditProduct</servlet-name>
+    <servlet-class>com.info.EditProduct</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EditFood</servlet-name>
-    <url-pattern>/editfood</url-pattern>
+    <servlet-name>EditProduct</servlet-name>
+    <url-pattern>/editproduct</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -58,5 +58,25 @@
   <servlet-mapping>
     <servlet-name>ChangeImg</servlet-name>
     <url-pattern>/changeimg</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Delete</display-name>
+    <servlet-name>Delete</servlet-name>
+    <servlet-class>com.info.Delete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Delete</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertProduct</display-name>
+    <servlet-name>InsertProduct</servlet-name>
+    <servlet-class>com.info.InsertProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertProduct</servlet-name>
+    <url-pattern>/insertproduct</url-pattern>
   </servlet-mapping>
 </web-app>

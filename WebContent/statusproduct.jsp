@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="com.info.EditUser, com.info.EditFood,com.info.Data"%>
+<%@page import="com.info.EditUser,com.info.EditProduct,com.info.Data"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
   <head>
     <meta charset="utf-8">
@@ -21,15 +21,15 @@
   <body> 
   
    	<%
-		String uid = (String)session.getAttribute("username");
-      	String type = (String)session.getAttribute("type");
-		if (uid == null || session.getAttribute("type").equals("admin"))
-		{
-			%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
+      		String uid = (String)session.getAttribute("username");
+      	      	String type = (String)session.getAttribute("type");
+      			if (uid == null || session.getAttribute("type").equals("admin"))
+      			{
+      	%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
 				<jsp:forward page="logout.jsp"/>
-			<%	
-		}
-	%>
+			<%
+				}
+			%>
   
   
     <h1>HEADER</h1>
@@ -83,17 +83,18 @@
 	</nav>
 	<br><br><br>
 	
-	<%  
-		String id=request.getParameter("id");
-		Data d=EditFood.getRecordById(Integer.parseInt(id));  
-	%>
+		<%
+			String id=request.getParameter("id");
+			String product=request.getParameter("product");
+			Data d=EditProduct.getRecordById(Integer.parseInt(id), product);
+		%>
 	
 	<h2 align="center">Status Data</h2>
 		<div class="container">
 		
 			<input type=hidden name="id" value="<%=d.getId() %>">
 		
-		<center><img src="getimage.jsp?id=<%=d.getId() %>" width="100px"></center>
+		<center><img src="getimage.jsp?id=<%=d.getId() %>&product=<%= product %>" width="100px"></center>
 		
 		<table class="table table-striped w-50" align="center">
             <tr>

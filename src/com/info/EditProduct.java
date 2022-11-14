@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Edit
  */
-public class EditFood extends HttpServlet {
+public class EditProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,11 +22,12 @@ public class EditFood extends HttpServlet {
 		int uid = Integer.parseInt(request.getParameter ("id"));
 		String uname = request.getParameter ("name");
 		String ucost = request.getParameter ("cost");
+		String uproduct = request.getParameter ("product");
 		
 		try {
 			
 			Connection con = DBConn.initializeDatabase();
-			PreparedStatement st = con.prepareStatement("update food set name=?, cost=? where id=?");
+			PreparedStatement st = con.prepareStatement("update "+ uproduct +" set name=?, cost=? where id=?");
 			
 			st.setString(1, uname);
 			st.setString(2, ucost);
@@ -49,11 +50,11 @@ public class EditFood extends HttpServlet {
 		
 	}
 	
-	public static Data getRecordById(int id){  
-	    Data d=null;  
+	public static Data getRecordById(int id, String product){
+	    Data d=null;
 	    try{  
-	    	Connection con = DBConn.initializeDatabase(); 
-	        PreparedStatement ps=con.prepareStatement("select * from food where id=?");  
+	    	Connection con = DBConn.initializeDatabase();
+	        PreparedStatement ps=con.prepareStatement("select * from "+product+" where id=?");  
 	        ps.setInt(1,id);  
 	        ResultSet rs=ps.executeQuery();  
 	        while(rs.next()){  

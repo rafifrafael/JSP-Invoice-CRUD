@@ -1,41 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>   
-
-<%@page import="com.info.EditUser, com.info.EditFood, com.info.Data"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@page import="com.info.EditUser, com.info.Data"%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-	
-	<link
+    
+    <link
 	  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
 	  rel="stylesheet"
 	/>
-	
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
   </head>
   <body>
   
-    	<%
-				//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
-				String uid = (String)session.getAttribute("username");
-      			String type = (String)session.getAttribute("type");
-				if (session.getAttribute("type").equals("user")|| uid == null)
-				{
-					%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
-					 	<jsp:forward page="logout.jsp"/>
-					<%	
-				}
-		%> 
+  	<%
+		String uid = (String)session.getAttribute("username");
+      	String type = (String)session.getAttribute("type");
+		if (uid == null || session.getAttribute("type").equals("user"))
+		{
+			%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
+				<jsp:forward page="logout.jsp"/>
+			<%	
+		}
+	%>
   
-<h1>Company Name</h1>
+  <h1>Company Name</h1>
     
     <nav class="navbar navbar-expand-lg bg-light">
 	  <div class="container-fluid">
@@ -76,35 +74,50 @@
 	<br><br><br>
 	
 	
-	<h2 align="center">Food Image</h2>
 	
-	<%  
-		String id=request.getParameter("id");
-		Data d=EditFood.getRecordById(Integer.parseInt(id));  
-	%>
+	<h2 align="center">Add Product</h2>
 	
-	
-	<form class="w-25 mx-auto" action="./changeimg" method="post" enctype="multipart/form-data">
+	<form action="./insertproduct" method="post" class="w-25 mx-auto" enctype="multipart/form-data">
 		<div class="container">
-		
+			
 			<div class="mb-3">
-				<input type="text" class="form-control" id="id" name="id" value="<%= d.getId() %>" hidden>
+				<label for="education" class="form-label">Name</label>
+				<input type="text" class="form-control" id="name" name="name">
+			</div>
+			
+			<label for="education" class="form-label">Cost</label>
+			<div class="input-group mb-3">			
+			  <span class="input-group-text" id="basic-addon1">Rp</span>
+			  <input type="text" class="form-control" name="cost" aria-describedby="basic-addon1">
 			</div>
 			
 			<div class="mb-3">
-				<input type="text" class="form-control" id="product" name="product" value="food" hidden>
+				<label for="education" class="form-label">Product</label>
+				<select class="form-select" name="product">
+				  <option selected>Product</option>
+				  <option value="food">Food</option>
+				  <option value="electronic">Electronic</option>
+				  <option value="education">Education</option>
+				  <option value="medical">Medical</option>
+				</select>
 			</div>
 			
-			<div class="mb-3">
-				<label for="file" class="form-label">Image</label>
-				<input type="file" class="form-control" id="photo" name="photo">
+			<div class="form-outline mb-4">
+				<label for="photo" class="form-label">Image</label>
+				<input type="file" class="form-control" id="image" name="image">
 			</div>
+			
+
 			
 			<div class="mb-3">
 				<input type="submit" class="btn btn-primary" value="Submit">
+				<a href="foodlist.jsp" class="btn btn-danger">Cancel</a>
 			</div>
+			
+			
 		</div>
 	</form>
+	
 	
 <footer class="bg-light text-center text-lg-start fixed-bottom">
 	  <!-- Grid container -->
@@ -144,5 +157,6 @@
 	  </div>
 	  <!-- Copyright -->
 	</footer>
+
 </body>
 </html>

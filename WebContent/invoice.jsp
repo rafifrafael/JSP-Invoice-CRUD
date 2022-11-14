@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>   
 
-<%@page import="com.info.EditUser, com.info.Data"%>
+<%@page import="com.info.EditUser, com.info.EditProduct, com.info.Data"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -92,7 +92,8 @@
 
 	<%  
 		String id=(String)session.getAttribute("id");  
-		Data d=EditUser.getRecordById(Integer.parseInt(id)); 
+		String product=(String)session.getAttribute("product");
+		Data d=EditProduct.getRecordById(Integer.parseInt(id), product); 
 	%>
 			
 	<%	
@@ -121,7 +122,7 @@
 
     	
     	<sql:query var="listUsers" dataSource="${myDS}">
-       		SELECT * FROM <%= request.getParameter("typep")%> WHERE id IN (<% 
+       		SELECT * FROM <%= request.getParameter("product")%> WHERE id IN (<% 
 									    		String checkedFood[] = request.getParameterValues("checkedfood");
    												String a = "";
 										    	for(String f: checkedFood) {
