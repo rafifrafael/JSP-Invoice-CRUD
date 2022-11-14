@@ -1,0 +1,56 @@
+create database assignment3;
+
+use assignment3;
+
+create table user(
+	id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	username varchar(255) NOT NULL,
+	password varchar(255) NOT NULL,
+	firstname varchar(255) NOT NULL,
+	lastname varchar(255) NOT NULL,
+	email varchar(255) NOT NULL,
+	address varchar(255) NOT NULL,
+	phone varchar(255) NOT NULL,
+	type varchar(255) NOT NULL
+);
+
+INSERT INTO user (username, password, firstname, lastname, email, address, phone, type)
+VALUES ("Admin", "admin", "Admin", "admiN", "admnin@admin.com", "admin", "123", "admin");
+
+create table food(
+	id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	name varchar(255) NOT NULL,
+	image blob,
+	cost varchar(10) NOT NULL,
+	product varchar(255) NOT NULL
+);
+
+INSERT INTO food (name, image, cost, product)
+VALUES ("Indomie", "123", "3000", "food");
+
+INSERT INTO food (name, image, cost, product)
+VALUES ("Snickers", "123", "4000", "food");
+
+create table electronic(
+	id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	name varchar(255) NOT NULL,
+	image blob,
+	cost varchar(10) NOT NULL,
+	product varchar(255) NOT NULL
+);
+
+create table education(
+	id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	name varchar(255) NOT NULL,
+	image blob,
+	cost varchar(10) NOT NULL,
+	product varchar(255) NOT NULL
+);
+
+create table medical(
+	id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	name varchar(255) NOT NULL,
+	image blob,
+	cost varchar(10) NOT NULL,
+	product varchar(255) NOT NULL
+);
