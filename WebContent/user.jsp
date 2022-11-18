@@ -117,7 +117,7 @@
 	</div>
     
     
-    <footer class="bg-light text-center text-lg-start fixed-bottom">
+    <footer class="bg-light text-center text-lg-start bottom">
 	  <!-- Grid container -->
 	  <div class="container p-4">
 	    <!--Grid row-->
