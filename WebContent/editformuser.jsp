@@ -85,11 +85,11 @@
 			
 			<div class="mb-3">
 				<label for="education" class="form-label">Firstname</label>
-				<input type="text" class="form-control" id="name" name="name" value="<%=d.getFirstname() %>">
+				<input type="text" class="form-control" id="firstname" name="firstname" value="<%=d.getFirstname() %>">
 			</div>
 			<div class="mb-3">
 				<label for="education" class="form-label">Lastname</label>
-				<input type="text" class="form-control" id="name" name="name" value="<%=d.getLastname() %>">
+				<input type="text" class="form-control" id="lastname" name="lastname" value="<%=d.getLastname() %>">
 			</div>
 			<div class="mb-3">
 				<label for="education" class="form-label">Username</label>
@@ -105,7 +105,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="education" class="form-label">Address</label>
-				<input type="text" class="form-control" id="name" name="name" value="<%=d.getAddress() %>">
+				<input type="text" class="form-control" id="address" name="address" value="<%=d.getAddress() %>">
 			</div>
 			<div class="mb-3">
 				<label for="education" class="form-label">Phone</label>
@@ -118,9 +118,6 @@
 			    <option value="admin">Admin</option>
 			    <option value="user">User<option>
 			  </select>
-			</div>
-			<div class="mb-3">
-				<a href="./changepic.jsp?id=<%=d.getId()%>" class="btn btn-success">Change Profile Picture</a>
 			</div>
 			
 			<div class="mb-3">

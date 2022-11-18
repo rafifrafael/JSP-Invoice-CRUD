@@ -53,7 +53,7 @@ public class EditUser extends HttpServlet {
 			// to display the successful result
 			PrintWriter out = response.getWriter();
 			out.println ("<html><body><b>Successfully Updated"	+ "</b></body></html>") ;
-			response.sendRedirect("http://localhost:8080/Assignment2/admin.jsp");
+			response.sendRedirect("http://localhost:8080/Assignment3/admin.jsp");
 		}
 		catch (Exception e) {
 			e.printStackTrace();

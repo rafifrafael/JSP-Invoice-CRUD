@@ -27,7 +27,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>EditUser</servlet-name>
-    <url-pattern>/EditUser</url-pattern>
+    <url-pattern>/edituser</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -78,5 +78,15 @@
   <servlet-mapping>
     <servlet-name>InsertProduct</servlet-name>
     <url-pattern>/insertproduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteUser</display-name>
+    <servlet-name>DeleteUser</servlet-name>
+    <servlet-class>com.info.DeleteUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUser</servlet-name>
+    <url-pattern>/deleteuser</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -54,14 +54,6 @@
 	        </li>
 	        
 	        <li class="nav-item">
-	          <a class="nav-link" href="form.jsp">Add</a>
-	        </li>
-	        
-	        <li class="nav-item">
-	          <a class="nav-link active" href="record.jsp">Record</a>
-	        </li>
-	        
-	        <li class="nav-item">
 	          <a class="nav-link" aria-current="page" href="#">About Us</a>
 	        </li>
 	        
@@ -144,7 +136,7 @@
 
 
     
-    <footer class="bg-light text-center text-lg-start fixed-bottom">
+    <footer class="bg-light text-center text-lg-start bottom">
 	  <!-- Grid container -->
 	  <div class="container p-4">
 	    <!--Grid row-->
