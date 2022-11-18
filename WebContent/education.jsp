@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ page import = "java.util.*"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-<%@page import="com.info.EditUser, com.info.Data"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>   
+
+<%@page import="com.info.EditUser,com.info.EditProduct, com.info.Data"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello</title>
-    
     <link
 	  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
 	  rel="stylesheet"
@@ -19,19 +21,21 @@
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+  	
   </head>
   <body>
   
-  	<%
-		String uid = (String)session.getAttribute("username");
-      	String type = (String)session.getAttribute("type");
-		if (uid == null || session.getAttribute("type").equals("user"))
-		{
-			%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
-				<jsp:forward page="logout.jsp"/>
-			<%	
-		}
-	%>
+    	 <%
+				//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
+				String uid = (String)session.getAttribute("username");
+      			String type = (String)session.getAttribute("type");
+				if (session.getAttribute("type").equals("admin")|| uid == null)
+				{
+					%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
+					 	<jsp:forward page="logout.jsp"/>
+					<%	
+				}
+		%> 
   
   <h1>Company Name</h1>
     
@@ -42,68 +46,106 @@
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarNav">
+	      
 	      <ul class="navbar-nav">
+	        
 	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" href="admin.jsp">Home</a>
+	          <a class="nav-link" aria-current="page" href="user.jsp">Home</a>
 	        </li>
+	        
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="product.jsp">Products</a>
+	          <a class="nav-link" href="form.jsp">Add</a>
 	        </li>
+	        
+	        <li class="nav-item">
+	          <a class="nav-link active" href="record.jsp">Record</a>
+	        </li>
+	        
+	        <li class="nav-item">
+	          <a class="nav-link" aria-current="page" href="#">About Us</a>
+	        </li>
+	        
+	        <li class="nav-item">
+	          <a class="nav-link" aria-current="page" href="#">Contact</a>
+	        </li>
+	        
+	        <li class="nav-item">
+	          <a class="nav-link" aria-current="page" href="#">Detail</a>
+	        </li>
+	        
+	        <li class="nav-item">
+	          <a class="nav-link" aria-current="page" href="#">Service</a>
+	        </li>
+	      
 	      </ul>
+	    
 	    </div>
 	    
-	    <!-- Right elements -->
+	     <!-- Right elements -->
+	     
+	    
     <div class="d-flex align-items-center">
-		
-      	<%	
-			out.println(" Welcome! " +uid);
-		%>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="logout.jsp">Logout</a>
-				</li>
-			</ul>
-		</div>
-
- 
+				<!-- WE HAVE GIVEN LOGOUT.JSP FILE INORDER TO LOGOUT THE SESSION -->
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+				    	<li class="nav-item">
+				        	<a class="nav-link" href="logout.jsp">Logout</a>
+						</li>
+					</ul>
+				</div> 
     </div>
     <!-- Right elements -->
 	  </div>
 	</nav>
-	<br><br><br>
+	<br>
+	
+	<sql:setDataSource
+        var="myDS"
+        driver="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/assignment3"
+        user="root" password="root"
+    />
+     
+    <sql:query var="listUsers"   dataSource="${myDS}">
+        SELECT * FROM education;
+    </sql:query>
      
     <div class="container">
-    	<caption><h2 align=center>List of Products</h2></caption>
-         <table class="table table-striped w-25" align="center">            
+    <caption><h2 align=center>Welcome to Education Section</h2></caption>
+    <form method="post" action="invoice.jsp">
+        <table class="table table-striped w-50 mx-auto" style="width:100%">            
             <tr>
-            	<th>Name</th>
-            	<th>View</th>
+            	<th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Choose</th>
             </tr>
-            <tr>
-                <td>Food</td>
-                <td><a href="foodlist.jsp?product=food" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View</a>
-            </tr>
-            <tr>
-                <td>Electronic</td>
-                <td><a href="electroniclist.jsp?product=electronic" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View</a>
-            </tr>
-            <tr>
-                <td>Education</td>
-                <td><a href="educationlist.jsp?product=education" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View</a>
-            </tr>
-            <tr>
-                <td>Medical</td>
-                <td><a href="medicallist.jsp?product=medical" class="btn btn-primary"><i class="fa-solid fa-eye"></i> View</a>
-            </tr>
-            <tr>
-                <td><a href="addproduct.jsp" class="btn btn-success">Add Product</a></td>
-                <td></td>
-            </tr>
+            <c:forEach var="user" items="${listUsers.rows}">
+                <tr>
+                    <td><c:out value="${user.id}" /></td>
+                    <td><a href="statusproduct.jsp?id=${user.id}&product=${user.product}"><c:out value="${user.name}" /></a></td>
+                    <td>
+	
+    					<img src="getimage.jsp?id=${user.id}&product=${user.product}" width="50px">
+                    
+                    </td>
+                    <td><input type="checkbox" name="checkedfood" value="${user.id}" /></td>
+                    <td><input type=text name=product value="${user.product}" hidden></td>
+                </tr>
+            </c:forEach>
         </table>
+        
+		<input type=text name=date value="<%= (new java.util.Date()).toLocaleString()%>" hidden>
+		
+		
+		<center><input type="submit" class="btn btn-primary" value="Submit"></center>
+        
+    </form>
     </div>
+
+
     
-<footer class="bg-light text-center text-lg-start fixed-bottom">
+    <footer class="bg-light text-center text-lg-start fixed-bottom">
 	  <!-- Grid container -->
 	  <div class="container p-4">
 	    <!--Grid row-->

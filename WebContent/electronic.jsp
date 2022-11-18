@@ -111,7 +111,7 @@
     </sql:query>
      
     <div class="container">
-    <caption><h2 align=center>Welcome to Food Section</h2></caption>
+    <caption><h2 align=center>Welcome to Electronic Section</h2></caption>
     <form method="post" action="invoice.jsp">
         <table class="table table-striped w-50 mx-auto" style="width:100%">            
             <tr>
