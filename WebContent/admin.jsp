@@ -76,7 +76,7 @@
 	<sql:setDataSource
         var="myDS"
         driver="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/assignment1"
+        url="jdbc:mysql://localhost:3306/assignment3"
         user="root" password="root"
     />
      
@@ -95,7 +95,7 @@
             <c:forEach var="user" items="${listUsers.rows}">
                 <tr>
                     <td><c:out value="${user.username}" /></td>
-                    <td><a href="status.jsp?id=${user.id}" class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td><a href="statususer.jsp?id=${user.id}" class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></a></td>
                     <td><a href="editformuser.jsp?id=${user.id}" class="btn btn-success"><i class="fa-solid fa-pencil"></i></a> |
 						<a href="#delete_${user.id}" class="btn btn-danger" data-bs-toggle="modal"><i class="fa-solid fa-trash"></i></a>
 					</td>

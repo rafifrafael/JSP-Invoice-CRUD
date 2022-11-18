@@ -109,8 +109,8 @@
 		</tr>
 		
 		<tr>
-			<td><a href="form.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Education Product</a></td>
-			<td><a href="record.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Medical Product</a></td>			
+			<td><a href="education.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Education Product</a></td>
+			<td><a href="medical.jsp" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Medical Product</a></td>			
 		</tr>
 	
 	</table>

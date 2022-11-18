@@ -85,7 +85,7 @@
     </sql:query>
      
     <div class="container">
-    	<caption><h2 align=center>Details of Food Products</h2></caption>
+    	<caption><h2 align=center>Details of Electronic Products</h2></caption>
          <table class="table table-striped w-50" align="center">            
             <tr>
             	<th>ID</th>
