@@ -22,8 +22,12 @@
   	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
   </head>
-  <body>
   
+  <%
+         try {
+  %>
+  <body class="d-flex flex-column min-vh-100">
+	  
   	   <%
 				//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				String uid = (String)session.getAttribute("username");
@@ -186,7 +190,7 @@
 
     
     
-    <footer class="bg-light text-center text-lg-start bottom">
+    <footer class="bg-light text-center text-lg-start mt-auto">
 	  <!-- Grid container -->
 	  <div class="container p-4">
 	    <!--Grid row-->
@@ -224,5 +228,11 @@
 	  </div>
 	  <!-- Copyright -->
 	</footer>
-  </body>
+  </body>        
 </html>
+<%
+         }
+         catch (Exception e) {
+            out.println("PLEASE CHOOSE AN ITEM! <br> choosed item: " + e.getMessage());
+         }
+      %>
