@@ -1,5 +1,4 @@
 # JSP-Invoice-CRUD
-Work in Progress
 
 Login
 ![Login](https://i.imgur.com/5034wlo.png)
